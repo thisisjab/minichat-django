@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "minichat"
+version = "0.1.0"
+description = "A besic chatting app built using django"
+authors = ["thisisjab <heythisisjab@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+poethepoet = "^0.24.4"
+pre-commit = "^3.6.0"
+ruff = "^0.1.11"
+django = "^5.0.1"
+django-environ = "^0.11.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poe.tasks]
+prepare = "pre-commit install"
