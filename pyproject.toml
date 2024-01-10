@@ -13,6 +13,7 @@ pre-commit = "^3.6.0"
 ruff = "^0.1.11"
 django = "^5.0.1"
 django-environ = "^0.11.2"
+psycopg2-binary = "^2.9.9"
 
 
 [build-system]
