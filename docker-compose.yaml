@@ -1,0 +1,25 @@
+version: '3.9'
+
+services:
+  app:
+    build:
+      context: .
+      args:
+        IS_DEBUG: "true"
+    depends_on:
+      - db
+    ports:
+      - 8000:8000
+    volumes:
+      - .:/app
+    command: ./docker/wait-for-it.sh db:5432 -- ./docker/docker-entrypoint.sh
+    restart: on-failure
+  db:
+    image: postgres:15.3-alpine
+    restart: always
+    ports:
+      - 5432:5432
+    volumes:
+      - ./volumes/postgres/:/var/lib/postgres/data/
+    environment:
+      - "POSTGRES_PASSWORD=postgres"
