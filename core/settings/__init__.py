@@ -39,7 +39,9 @@ ALLOWED_HOSTS = env.list("PROJECT_ALLOWED_HOSTS", default=[])
 
 LOCAL_APPS = []
 
-DEBUGGING_APPS = []
+DEBUGGING_APPS = [
+    "debug_toolbar",
+]
 
 THIRDPARTY_APPS = []
 
@@ -69,6 +71,30 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
+
+if DEBUG:
+    MIDDLEWARE.insert(0, "debug_toolbar.middleware.DebugToolbarMiddleware")
+
+DEFAULT_INTERNAL_IPS = ["127.0.0.1"]
+
+if DEBUG:
+    import socket
+
+    # WARN: do not use `_` as variable name because it will be confused with gettext_lazy.
+    hostname, __, ips = socket.gethostbyname_ex(socket.gethostname())
+    DEFAULT_INTERNAL_IPS.extend(
+        [ip[: ip.rfind(".")] + ".1" for ip in ips] + ["10.0.2.2"]
+    )
+
+EXTRA_INTERNAL_IPS = env.list(
+    var="PROJECT_EXTRA_INTERNAL_IPS", cast=str, default=list()
+)
+
+INTERNAL_IPS = (
+    env.list(var="PROJECT_INTERNAL_IPS", cast=str, default=DEFAULT_INTERNAL_IPS)
+    + EXTRA_INTERNAL_IPS
+)
+
 
 ROOT_URLCONF = "core.urls"
 
