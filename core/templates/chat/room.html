@@ -5,7 +5,7 @@
     <div class="row my-5">
         <div class="col-lg-6 offset-lg-3">
             <p>Messages:</p>
-            <textarea class="form-control" name="" id="" rows="10"></textarea>
+            <textarea disabled="true" class="form-control" name="" id="messages-list" rows="10"></textarea>
 
             <div class="input-group mt-3">
                 <input id="message-input" type="text" class="form-control" placeholder="Type in your message...">
@@ -17,12 +17,34 @@
 
 <script>
     let ws_url = `ws://${window.location.host}/ws/socket-server/`
-
+    let message_list = document.getElementById('messages-list')
     const chatSocket = new WebSocket(ws_url)
 
-    chatSocket.onmessage = function(e) {
+    chatSocket.onmessage = function (e) {
         let data = JSON.parse(e.data)
         console.log("Data:", data)
+
+        if (data.type === 'chat') {
+            let message = data.message
+
+            message_list.value += message + '\n'
+        }
     }
+
+    let submit_button = document.getElementById("message-submit")
+    let message_input = document.getElementById("message-input")
+    message_input.focus();
+    message_input.onkeyup = function (e) {
+        if (e.key === 'Enter') {
+            submit_button.click();
+        }
+    };
+    submit_button.onclick = function (e) {
+        const message = message_input.value;
+        chatSocket.send(JSON.stringify({
+            'message': message
+        }));
+        message_input.value = '';
+    };
 </script>
 {% endblock main %}
