@@ -14,4 +14,15 @@
         </div>
     </div>
 </div>
+
+<script>
+    let ws_url = `ws://${window.location.host}/ws/socket-server/`
+
+    const chatSocket = new WebSocket(ws_url)
+
+    chatSocket.onmessage = function(e) {
+        let data = JSON.parse(e.data)
+        console.log("Data:", data)
+    }
+</script>
 {% endblock main %}
