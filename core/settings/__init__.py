@@ -155,6 +155,10 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# Authentication app configuration
+LOGIN_REDIRECT_URL = "pages:index"
+LOGOUT_REDIRECT_URL = "pages:index"
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
