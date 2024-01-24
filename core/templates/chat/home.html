@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block title %}Chat now!{% endblock %}
+{% block main %}
+<div class="container">
+    <div class="row my-5">
+        <div class="col-lg-6 offset-lg-3">
+            <h1>Select a room or create one:</h1>
+            <div class="input-group mt-3">
+                <input id="room-name-input" type="text" class="form-control" placeholder="Enter chatroom name...">
+                <button id="room-name-submit" class="btn btn-secondary" type="button">Start chatting!</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.querySelector('#room-name-input').focus();
+    document.querySelector('#room-name-input').onkeyup = function (e) {
+        if (e.key === 'Enter') {  // enter, return
+            document.querySelector('#room-name-submit').click();
+        }
+    };
+
+    document.querySelector('#room-name-submit').onclick = function (e) {
+        var roomName = document.querySelector('#room-name-input').value;
+        window.location.pathname = '/chat/' + roomName + '/';
+    };
+</script>
+{% endblock main %}
