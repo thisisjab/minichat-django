@@ -18,9 +18,14 @@
           </a>
           <ul class="dropdown-menu">
             {% if user.is_authenticated %}
-            <li><a class="dropdown-item" href="#">Logout</a></li>
+            <li>
+              <form method="post" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <button class="dropdown-item" href="{% url 'login' %}">Logout</button>
+            </form>
+            </li>
             {% else %}
-            <li><a class="dropdown-item" href="#">Login</a></li>
+            <li><a class="dropdown-item" href="{% url 'login' %}">Login</a></li>
             {% endif %}
           </ul>
         </li>
