@@ -37,7 +37,9 @@ ALLOWED_HOSTS = env.list("PROJECT_ALLOWED_HOSTS", default=[])
 
 # Application definition
 
-LOCAL_APPS = []
+LOCAL_APPS = [
+    "core.pages",
+]
 
 DEBUGGING_APPS = [
     "debug_toolbar",
