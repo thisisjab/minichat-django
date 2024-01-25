@@ -123,10 +123,20 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "core.wsgi.application"
 ASGI_APPLICATION = "core.asgi.application"
+PROJECT_CHANNEL_LAYER_REDIS_IP = env.str("PROJECT_CHANNEL_LAYER_REDIS_IP", "127.0.0.1")
+PROJECT_CHANNEL_LAYER_REDIS_PORT = env.int("PROJECT_CHANNEL_LAYER_REDIS_PORT", 6379)
 CHANNEL_LAYERS = {
     "default": {
-        "BACKEND": "channels.layers.InMemoryChannelLayer",
-    }
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [
+                (
+                    PROJECT_CHANNEL_LAYER_REDIS_IP,
+                    PROJECT_CHANNEL_LAYER_REDIS_PORT,
+                )
+            ],
+        },
+    },
 }
 
 # Database

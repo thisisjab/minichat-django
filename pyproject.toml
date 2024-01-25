@@ -17,6 +17,7 @@ psycopg2-binary = "^2.9.9"
 django-crispy-forms = "^2.1"
 crispy-bootstrap5 = "^2023.10"
 channels = {extras = ["daphne"], version = "^4.0.0"}
+channels-redis = "^4.2.0"
 
 
 [tool.poetry.group.dev.dependencies]
