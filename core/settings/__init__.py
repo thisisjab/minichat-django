@@ -38,6 +38,7 @@ ALLOWED_HOSTS = env.list("PROJECT_ALLOWED_HOSTS", default=[])
 # Application definition
 
 LOCAL_APPS = [
+    "core.users",
     "core.chat",
     "core.pages",
 ]
