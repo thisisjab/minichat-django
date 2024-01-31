@@ -174,7 +174,9 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 AUTH_USER_MODEL = "users.User"
-
+AUTHENTICATION_BACKENDS = [
+    "core.users.backends.UsernameOrEmailModelBackend",
+]
 # Authentication app configuration
 LOGIN_REDIRECT_URL = "pages:index"
 LOGOUT_REDIRECT_URL = "pages:index"
