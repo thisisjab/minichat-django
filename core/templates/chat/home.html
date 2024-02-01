@@ -1,19 +1,34 @@
 {% extends 'base.html' %}
+{% block navbar %}{% endblock navbar %}
 {% block title %}Chat now!{% endblock %}
 {% block main %}
-<div class="container">
-    <div class="row my-5">
-        <div class="col-lg-6 offset-lg-3">
-            <h1>Select a room or create one:</h1>
-            <div class="input-group mt-3">
-                <input id="room-name-input" type="text" class="form-control" placeholder="Enter chatroom name...">
-                <button id="room-name-submit" class="btn btn-secondary" type="button">Start chatting!</button>
+<div class="h-min-100 dotted-background">
+    <div class="container d-flex flex-column h-min-100" id="chat-window">
+        <div class="row">
+            <div class="col-12 d-flex align-items-center" id="chat-navbar">
+                <h1>minichat</h1>
             </div>
+        </div>
+        <div class="row d-flex flex-row flex-fill">
+            <div class="col-lg-4 d-flex flex-column flex-fill" id="chat-list">
+                <div class="flex-fill" id="chat-list-scroll">
+                    <a href="#" class="d-flex flex-row align-items-center" id="chat-list-item">
+                        <div class="">
+                            <img src="https://i.natgeofe.com/k/ad9b542e-c4a0-4d0b-9147-da17121b4c98/MOmeow1_square.png" alt="">
+                        </div>
+                        <div class="flex-fill mx-2">
+                            <h3>Title</h3>
+                            <p>Date: 2024-09-10 10:30 PM</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-8 flex-fill" id="chat-box">COL 2</div>
         </div>
     </div>
 </div>
 
-<script>
+<!-- <script>
     document.querySelector('#room-name-input').focus();
     document.querySelector('#room-name-input').onkeyup = function (e) {
         if (e.key === 'Enter') {  // enter, return
@@ -25,5 +40,5 @@
         var roomName = document.querySelector('#room-name-input').value;
         window.location.pathname = '/chat/' + roomName + '/';
     };
-</script>
+</script> -->
 {% endblock main %}

@@ -46,6 +46,9 @@ a,
     /* Buttons */
     --button-padding-x: .5rem;
     --button-padding-y: .25rem;
+
+    /* Custom sizes */
+    --chat-nav-height: 2.5rem;
 }
 
 .button {
@@ -103,6 +106,88 @@ a,
 
 #index-main {
     min-height: 100vh;
+}
+
+#chat-navbar {
+    height: var(--chat-nav-height);
+    background-color: white;
+    border: 1px solid var(--gray-darker);
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+}
+
+#chat-navbar>h1 {
+    font-size: 1rem;
+    font-weight: 900;
+    color: var(--second-primary);
+    margin: 0;
+    padding: .5rem 0;
+    text-transform: uppercase;
+}
+
+#chat-window {
+    border: 1px solid var(--gray-darker);
+    border-top: 0;
+    border-bottom: 0;
+}
+
+#chat-list {
+    border: 1px dashed var(--gray-darker);
+    border-top: 0;
+    border-bottom: 0;
+    border-left: 0;
+    background-color: white;
+}
+
+#chat-list-scroll {
+    height: calc(100vh - var(--chat-nav-height));
+    overflow-y: auto;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+    scrollbar-color: var(--gray) white;
+    scrollbar-width: thin;
+}
+
+#chat-list-item {
+    color: black;
+    text-decoration: none;
+    padding: 0.5rem 0;
+    border: 1px solid var(--gray-lighter);
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    background-color: white;
+    transition: all ease-in-out .1s;
+}
+
+#chat-list-item:hover {
+    margin-left: 0.5rem;
+}
+
+#chat-list-item>div>img {
+    width: 50px;
+    height: 50px;
+    clip-path: circle();
+}
+
+#chat-list-item>div>h3 {
+    font-size: 1rem;
+    font-weight: normal;
+    margin: 0;
+    padding: 0;
+}
+
+#chat-list-item>div>p {
+    font-size: .75rem;
+    font-family: SourceCode, monospace;
+    margin: 0;
+    padding: 0;
+    color: #707070;
+}
+
+.background-white {
+    background-color: white;
 }
 
 .dotted-background {
