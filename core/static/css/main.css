@@ -19,13 +19,80 @@ h6 {
     font-family: RobotoFlex, 'Times New Roman', Times, serif;
 }
 
-p, a {
+p {
     font-family: RobotoFlex, system-ui;
 }
 
+a {
+    font-family: SourceCode, system-ui;
+}
+
 :root {
-    --primary: #40A2E3;
-    --second-primary: #0D9276;
-    --second-primary-lighter: #BBE2EC;
-    --light: #FFF6E9;
+    --primary: #FF6969;
+    --primary-hover: #ffb4b4;
+    --primary-darker: #662a2a;
+    --primary-lighter: #ffe1e1;
+    --second-primary: #21BF73;
+    --second-primary-hover: #90dfb9;
+    --second-primary-darker: #0a3922;
+    --second-primary-lighter: #d3f2e3;
+    --pale: #FFF6E9;
+    --gray: #dee2e6;
+    --gray-hover: #ced4da;
+    --gray-darker: #495057;
+    --gray-lighter: #e9ecef;
+
+    /* Buttons */
+    --button-padding-x: .5rem;
+    --button-padding-y: .25rem;
+}
+
+.button {
+    border: 1px solid gray;
+    border-radius: var(--bs-border-radius);
+    padding: var(--button-padding-y) var(--button-padding-x);
+    text-decoration: none;
+    transition: all ease-in-out .05s;
+}
+
+.primary-button {
+    background-color: var(--primary-lighter);
+    color: var(--primary-darker);
+    border-color: var(--primary);
+}
+
+.primary-button:hover {
+    background-color: var(--primary-hover);
+    border-color: var(--primary-darker);
+
+}
+
+.second-primary-button {
+    background-color: var(--second-primary-lighter);
+    color: var(--second-primary-darker);
+    border-color: var(--second-primary);
+}
+
+.second-primary-button:hover {
+    background-color: var(--second-primary-hover);
+    border-color: var(--second-primary-darker);
+}
+
+.gray-button {
+    background-color: var(--gray-lighter);
+    color: var(--gray-darker);
+    border-color: var(--gray-darker);
+}
+
+.gray-button:hover {
+    background-color: var(--gray-hover);
+    border-color: var(--gray-darker);
+}
+
+
+#index-main {
+    min-height: 100vh;
+    background-image: url(../svg/background-pattern.svg);
+    background-repeat: repeat;
+    background-size: 5px 5px;
 }

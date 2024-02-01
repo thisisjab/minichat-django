@@ -1,11 +1,24 @@
 {% extends 'base.html' %}
+{% block navbar %}{% endblock navbar %}
 {% block main %}
-<div class="p-5 text-center bg-body-tertiary">
-    <div class="container py-5">
-        <h1 class="text-body-emphasis">Welcome to minichat.</h1>
-        <p class="col-lg-8 mx-auto lead">
-            This is a simple chatting app built using django and channels.
-        </p>
+<div id="index-main" class="d-flex flex-column justify-content-center align-items-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 card py-5 px-5 d-flex flex-column">
+                <h1>Welcome to minichat!</h1>
+                <p style="text-align: justify;" class="lh-base">Stay connected and chat with friends, family, and like-minded
+                    individuals, no matter where they are in the world. With our user-friendly interface and seamless
+                    experience, communication has never been easier. Express yourself with emojis, share photos, and
+                    engage in lively conversations in real-time. Join different chat groups based on your interests, and
+                    meet new people who share your passions. Whether you're looking to stay in touch with loved ones or
+                    expand your social circle, our chatting application is your go-to platform for enjoyable and
+                    meaningful conversations. Chat away and make connections that last a lifetime!</p>
+                <div class="col-12 d-flex flex-row gap-3 justify-content-center mt-3">
+                    <a class="button second-primary-button" href="{% url 'login' %}">Login</a>
+                    <a class="button primary-button" href="#">Sign Up Now</a>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 {% endblock main %}
