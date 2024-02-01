@@ -1,4 +1,28 @@
 /* Used palette: https://colorhunt.co/palette/40a2e3fff6e9bbe2ec0d9276 */
+
+@font-face {
+    font-family: RobotoFlex;
+    src: url(../fonts/RobotoFlex.ttf);
+}
+
+@font-face {
+    font-family: SourceCode;
+    src: url("../fonts/SourceCode.ttf");
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: RobotoFlex, 'Times New Roman', Times, serif;
+}
+
+p, a {
+    font-family: RobotoFlex, system-ui;
+}
+
 :root {
     --primary: #40A2E3;
     --second-primary: #0D9276;
