@@ -7,10 +7,14 @@
         <div class="row">
             <div class="col-lg-4 offset-lg-4 card py-5 px-5 d-flex flex-column gap-3">
                 {% if user.is_authenticated %}
-                <div class="d-flex flex-column justify-content-center align-items-center">
+                <form id="logout-form" action="{% url 'logout' %}" method="post"
+                    class="d-flex flex-column justify-content-center align-items-center">
+                    {% csrf_token %}
                     <p style="margin: 0;">You are already logged in.</p>
-                    <p style="margin: 0;">Let's go back to <a href="{% url 'pages:index' %}">home</a>.</p>
-                </div>
+                    <input type="submit" value="logout">
+                    <p style="margin: 0;">You want to <a href="{% url 'logout' %}"
+                            onclick="document.getElementById('logout-form').submit();">logout</a>?</p>
+                </form>
                 {% else %}
                 <h1>Login</h1>
                 <form id="login-form" class="col-12 d-flex flex-column gap-3" method="post">
