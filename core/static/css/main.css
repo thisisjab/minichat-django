@@ -49,6 +49,7 @@ a,
 
     /* Custom sizes */
     --chat-nav-height: 2.5rem;
+    --chat-input-height: 2.5rem;
 }
 
 .button {
@@ -111,7 +112,7 @@ a,
 #chat-navbar {
     height: var(--chat-nav-height);
     background-color: white;
-    border: 1px solid var(--gray-darker);
+    /* border: 1px solid var(--gray-darker); */
     border-top: 0;
     border-left: 0;
     border-right: 0;
@@ -133,7 +134,7 @@ a,
 }
 
 #chat-list {
-    border: 1px dashed var(--gray-darker);
+    /* border: 1px dashed var(--gray-darker); */
     border-top: 0;
     border-bottom: 0;
     border-left: 0;
@@ -184,6 +185,88 @@ a,
     margin: 0;
     padding: 0;
     color: #707070;
+}
+
+#chat-input {
+    height: var(--chat-input-height);
+    background-color: white;
+    /* border: 1px solid var(--gray-darker); */
+    border-bottom: 0;
+    border-left: 0;
+    border-right: 0;
+}
+
+#chat-box {
+    background-color: var(--pale);
+}
+
+#chat-messages-list {
+    background-color: wheat;
+    height: calc(100vh - var(--chat-nav-height) - var(--chat-input-height));
+    overflow-y: auto;
+    flex-wrap: nowrap;
+}
+
+#chat-messages-list > :first-child {
+    margin-top: auto !important;
+}
+
+#chat-message-text-input {
+    outline: 0;
+    width: 100%;
+    margin: 0;
+    padding: 0 0.35rem;
+    border: 0;
+}
+
+#chat-sent-message {
+    align-self: flex-start;
+    background-color: var(--second-primary-lighter);
+    padding: 0.5rem;
+    margin: 0.5rem;
+    border-radius: var(--bs-border-radius);
+    max-width: 400px;
+}
+
+#chat-sent-message>#body {
+    font-family: RobotoFlex, system-ui;
+    font-size: 1rem;
+    padding: 0;
+    margin: 0;
+}
+
+#chat-sent-message>#date {
+    text-align: right;
+    color: #707070;
+    font-family: SourceCode, monospace;
+    font-size: 0.8rem;
+    padding: 0;
+    margin: 0;
+}
+
+#chat-received-message {
+    align-self: flex-end;
+    background-color: white;
+    padding: 0.5rem;
+    margin: 0.5rem;
+    border-radius: var(--bs-border-radius);
+    max-width: 400px;
+}
+
+#chat-received-message>#body {
+    font-family: RobotoFlex, system-ui;
+    font-size: 1rem;
+    padding: 0;
+    margin: 0;
+}
+
+#chat-received-message>#date {
+    text-align: right;
+    color: #707070;
+    font-family: SourceCode, monospace;
+    font-size: 0.8rem;
+    padding: 0;
+    margin: 0;
 }
 
 .background-white {
