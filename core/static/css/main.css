@@ -23,8 +23,9 @@ p {
     font-family: RobotoFlex, system-ui;
 }
 
-a {
-    font-family: SourceCode, system-ui;
+a,
+.font-monospace {
+    font-family: SourceCode, monospace;
 }
 
 :root {
@@ -87,6 +88,16 @@ a {
 .gray-button:hover {
     background-color: var(--gray-hover);
     border-color: var(--gray-darker);
+}
+
+.simple-text-input {
+    border-radius: var(--bs-border-radius);
+    padding: var(--button-padding-y) var(--button-padding-x);
+    text-decoration: none;
+    transition: all ease-in-out .05s;
+    border: 1px solid var(--gray-hover);
+    outline: none;
+    font-family: SourceCode, monospace;
 }
 
 
