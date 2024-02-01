@@ -92,6 +92,9 @@ a {
 
 #index-main {
     min-height: 100vh;
+}
+
+.dotted-background {
     background-image: url(../svg/background-pattern.svg);
     background-repeat: repeat;
     background-size: 5px 5px;
