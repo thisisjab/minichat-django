@@ -19,67 +19,9 @@
                 </div>
             </div>
             <div class="col-lg-8 d-flex flex-column justify-content-end flex-fill" id="chat-box">
-                <div class="d-flex flex-column" id="chat-messages-list">
-                    <div class="d-flex flex-column" id="chat-sent-message">
-                        <p id="body">Hey what's up?
-
-
-                        </p>
-                        <p id="date">12:23</p>
-                    </div>
-                    <div class="d-flex flex-column" id="chat-sent-message">
-                        <p id="body">Hey what's up?
-
-
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda at a sed cumque
-                            necessitatibus soluta consequatur mollitia minus nostrum placeat! Consectetur hic atque nam,
-                            laudantium architecto harum perferendis natus quaerat!
-                        </p>
-                        <p id="date">12:23</p>
-                    </div>
-                    <div class="d-flex flex-column" id="chat-received-message">
-                        <p id="body">I'm doing fine.</p>
-                        <p id="date">12:30</p>
-                    </div>
-                    <div class="d-flex flex-column" id="chat-sent-message">
-                        <p id="body">I'm doing fine.</p>
-                        <p id="date">12:30</p>
-                    </div>
-                    <div class="d-flex flex-column" id="chat-sent-message">
-                        <p id="body">I'm doing fine.</p>
-                        <p id="date">12:30</p>
-                    </div>
-                    <div class="d-flex flex-column" id="chat-sent-message">
-                        <p id="body">I'm doing fine.</p>
-                        <p id="date">12:30</p>
-                    </div>
-                    <div class="d-flex flex-column" id="chat-sent-message">
-                        <p id="body">I'm doing fine.</p>
-                        <p id="date">12:30</p>
-                    </div>
-                    <div class="d-flex flex-column" id="chat-sent-message">
-                        <p id="body">I'm doing fine.</p>
-                        <p id="date">12:30</p>
-                    </div>
-                    <div class="d-flex flex-column" id="chat-received-message">
-                        <p id="body">I'm doing fine. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor
-                            natus, porro magni deserunt vel optio nam voluptatem ducimus impedit architecto doloremque
-                            aliquid eum similique molestiae! Ut nihil ducimus possimus quam!
-                            At cumque maxime officiis eos. Expedita necessitatibus velit delectus suscipit deleniti eius
-                            eum illo fugiat, sit error, amet dicta saepe adipisci corporis animi assumenda ea alias iste
-                            vel. Rem, quasi!</p>
-                        <p id="date">12:30</p>
-                    </div>
-                </div>
-                <div id="chat-input" class="row">
-                    <div class="col-10 d-flex flex-row">
-                        <input type="text" placeholder="Message..." class="flex-fill" id="chat-message-text-input">
-                    </div>
-                    <div class="col-2 d-flex flex-row justify-content-center align-items-center gap-2">
-                        <a href="#">Send</a>/
-                        <a href="#">File</a>
-                    </div>
-                </div>
+                {% block chat_box %}
+                <p id="chat-box-empty">Please select a chat</p>
+                {% endblock chat_box %}
             </div>
         </div>
     </div>

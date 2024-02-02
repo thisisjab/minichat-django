@@ -50,6 +50,7 @@ a,
     /* Custom sizes */
     --chat-nav-height: 2.5rem;
     --chat-input-height: 2.5rem;
+    --small-round-padded-text-radius: 1rem;
 }
 
 .button {
@@ -134,7 +135,7 @@ a,
     color: black;
     background-color: var(--gray-lighter);
     padding: 0 .25rem;
-    margin: 0 ;
+    margin: 0;
     margin-left: 1rem;
 }
 
@@ -226,6 +227,15 @@ a,
     background-color: var(--pale);
 }
 
+#chat-box>#chat-box-empty {
+    align-self: center;
+    margin: auto 0;
+    color: var(--gray-darker);
+    background-color: white;
+    padding: .5rem 1rem;
+    border-radius: var(--small-round-padded-text-radius);
+}
+
 #chat-messages-list {
     background-color: wheat;
     height: calc(100vh - var(--chat-nav-height) - var(--chat-input-height));
@@ -233,7 +243,7 @@ a,
     flex-wrap: nowrap;
 }
 
-#chat-messages-list > :first-child {
+#chat-messages-list> :first-child {
     margin-top: auto !important;
 }
 
