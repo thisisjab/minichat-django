@@ -68,7 +68,6 @@ class Chat(models.Model):
         choices=Type.choices,
         blank=False,
         null=False,
-        editable=False,
     )
 
     created_at = models.DateTimeField(
