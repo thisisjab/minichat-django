@@ -88,6 +88,7 @@ class ConversationView(LoginRequiredMixin, UserPassesTestMixin, View):
             request,
             "chat/conversation.html",
             context={
+                "chat_id": str(id),
                 "user_active_chats": user_active_chats,
                 "chat_messages": chat_messages,
             },
