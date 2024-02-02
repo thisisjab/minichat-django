@@ -106,6 +106,13 @@ class BaseMessage(TimeStampedModel):
         verbose_name=_("Chat"),
     )
 
+    sender = models.ForeignKey(
+        User,
+        on_delete=models.PROTECT,
+        related_name="sent_messages",
+        verbose_name=_("Sender"),
+    )
+
     class Meta:
         abstract = True
 
