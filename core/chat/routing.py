@@ -4,8 +4,8 @@ from core.chat import consumers
 
 ws_urlpatterns = [
     re_path(
-        "ws/socket-server/",
+        r"^ws/chat/(?P<id>[0-9a-f-]+)/$",
         consumers.ChatConsumer.as_asgi(),
-        name="socket-server",
+        name="chat",
     )
 ]
