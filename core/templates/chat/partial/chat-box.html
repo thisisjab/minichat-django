@@ -1,54 +1,17 @@
 <div class="d-flex flex-column" id="chat-messages-list">
+    {% for message in chat_messages %}
+    {% if message.is_sent %}
     <div class="d-flex flex-column" id="chat-sent-message">
-        <p id="body">Hey what's up?
-
-
-        </p>
-        <p id="date">12:23</p>
+        <p id="body">{{ message.body }}</p>
+        <p id="date">{{ message.modified_at }}</p>
     </div>
-    <div class="d-flex flex-column" id="chat-sent-message">
-        <p id="body">Hey what's up?
-
-
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda at a sed cumque
-            necessitatibus soluta consequatur mollitia minus nostrum placeat! Consectetur hic atque nam,
-            laudantium architecto harum perferendis natus quaerat!
-        </p>
-        <p id="date">12:23</p>
-    </div>
+    {% else %}
     <div class="d-flex flex-column" id="chat-received-message">
-        <p id="body">I'm doing fine.</p>
-        <p id="date">12:30</p>
+        <p id="body">{{ message.body }}</p>
+        <p id="date">{{ message.modified_at }}</p>
     </div>
-    <div class="d-flex flex-column" id="chat-sent-message">
-        <p id="body">I'm doing fine.</p>
-        <p id="date">12:30</p>
-    </div>
-    <div class="d-flex flex-column" id="chat-sent-message">
-        <p id="body">I'm doing fine.</p>
-        <p id="date">12:30</p>
-    </div>
-    <div class="d-flex flex-column" id="chat-sent-message">
-        <p id="body">I'm doing fine.</p>
-        <p id="date">12:30</p>
-    </div>
-    <div class="d-flex flex-column" id="chat-sent-message">
-        <p id="body">I'm doing fine.</p>
-        <p id="date">12:30</p>
-    </div>
-    <div class="d-flex flex-column" id="chat-sent-message">
-        <p id="body">I'm doing fine.</p>
-        <p id="date">12:30</p>
-    </div>
-    <div class="d-flex flex-column" id="chat-received-message">
-        <p id="body">I'm doing fine. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor
-            natus, porro magni deserunt vel optio nam voluptatem ducimus impedit architecto doloremque
-            aliquid eum similique molestiae! Ut nihil ducimus possimus quam!
-            At cumque maxime officiis eos. Expedita necessitatibus velit delectus suscipit deleniti eius
-            eum illo fugiat, sit error, amet dicta saepe adipisci corporis animi assumenda ea alias iste
-            vel. Rem, quasi!</p>
-        <p id="date">12:30</p>
-    </div>
+    {% endif %}
+    {% endfor %}
 </div>
 <div id="chat-input" class="row">
     <div class="col-10 d-flex flex-row">
