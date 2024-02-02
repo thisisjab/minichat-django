@@ -38,7 +38,7 @@ class Participation(models.Model):
 
 
 class Chat(models.Model):
-    """Model that represents a private chat between two users.
+    """Model that represents a chat between two or more users.
 
     Raises:
         ValidationError: Validation error raised more that two users are added as participants.
