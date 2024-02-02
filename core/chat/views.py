@@ -8,6 +8,7 @@ from django.shortcuts import render
 from django.views import View
 
 from core.chat import models
+from core.chat.permissions import check_user_is_a_participant
 
 User = get_user_model()
 
@@ -93,14 +94,7 @@ class ConversationView(LoginRequiredMixin, UserPassesTestMixin, View):
         )
 
     def test_func(self: Self):
-        """Check if chat exists and user is a participant of it."""
-        chat = models.Chat.objects.filter(id=self.kwargs["id"])
-        if not chat.exists():
-            return False
-
-        if not self.request.user.participations.filter(
-            chat__id=self.kwargs["id"], is_active=True
-        ).exists():
-            return False
-
-        return True
+        return check_user_is_a_participant(
+            self.request.user,
+            self.kwargs["id"],
+        )
