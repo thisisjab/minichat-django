@@ -52,7 +52,7 @@ class Chat(models.Model):
         primary_key=True,
         blank=False,
         null=False,
-        default=uuid.uuid4(),
+        default=uuid.uuid4,
         editable=False,
         verbose_name=_("ID"),
     )
@@ -101,7 +101,7 @@ class BaseMessage(TimeStampedModel):
         primary_key=True,
         blank=False,
         null=False,
-        default=uuid.uuid4(),
+        default=uuid.uuid4,
         editable=False,
         verbose_name=_("ID"),
     )
