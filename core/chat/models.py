@@ -87,6 +87,12 @@ class Chat(models.Model):
         # TODO: complete this function
         return super().__str__()
 
+    def last_modified_at(self: Self):
+        if self.messages.annotate():
+            return self.messages.last().modified_at
+
+        return None
+
 
 class BaseMessage(TimeStampedModel):
     """Base model for any message sent in a chat."""
