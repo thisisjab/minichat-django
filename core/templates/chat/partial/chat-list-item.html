@@ -1,0 +1,21 @@
+{% if chat.type == 'P' %}
+<a href="#" class="d-flex flex-row align-items-center" id="chat-list-item">
+    <div class="">
+        <!-- <img src="https://i.natgeofe.com/k/ad9b542e-c4a0-4d0b-9147-da17121b4c98/MOmeow1_square.png"
+                                alt=""> -->
+        <span>{{ chat.name|make_list|first}}</span>
+    </div>
+    <div class="flex-fill mx-2">
+        <h3>{{ chat.name }}</h3>
+        <p>
+            {% if chat.last_modified_at %}
+            {{ chat.last_modified_at }}
+            {% else %}
+            No messages yet...
+            {% endif %}
+        </p>
+    </div>
+</a>
+{% else %}
+Not ready to show group chats.
+{% endif %}
