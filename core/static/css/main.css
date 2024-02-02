@@ -127,6 +127,17 @@ a,
     text-transform: uppercase;
 }
 
+#chat-navbar>p {
+    font-size: .75rem;
+    font-weight: 500;
+    font-family: SourceCode, monospace;
+    color: black;
+    background-color: var(--gray-lighter);
+    padding: 0 .25rem;
+    margin: 0 ;
+    margin-left: 1rem;
+}
+
 #chat-window {
     border: 1px solid var(--gray-darker);
     border-top: 0;
