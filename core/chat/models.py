@@ -53,6 +53,7 @@ class Chat(models.Model):
         blank=False,
         null=False,
         default=uuid.uuid4(),
+        editable=False,
         verbose_name=_("ID"),
     )
 
@@ -95,6 +96,7 @@ class BaseMessage(TimeStampedModel):
         blank=False,
         null=False,
         default=uuid.uuid4(),
+        editable=False,
         verbose_name=_("ID"),
     )
 
