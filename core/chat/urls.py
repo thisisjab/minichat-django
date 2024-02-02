@@ -5,6 +5,6 @@ from core.chat import views
 app_name = "chat"
 
 urlpatterns = [
-    path("", views.HomeView.as_view(), name="home"),
-    path("<str:room_name>/", views.RoomView.as_view(), name="room"),
+    path("", views.ChatListView.as_view(), name="list"),
+    path("<uuid:id>/", views.ConversationView.as_view(), name="conversation"),
 ]

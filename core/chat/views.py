@@ -11,7 +11,7 @@ from core.chat import models
 User = get_user_model()
 
 
-class HomeView(LoginRequiredMixin, View):
+class ChatListView(LoginRequiredMixin, View):
     def get(self: Self, request: HttpRequest):
         user_active_participations = models.Participation.objects.filter(
             user=request.user, is_active=True
@@ -36,10 +36,10 @@ class HomeView(LoginRequiredMixin, View):
             user_active_chats.append(chat)
 
         return render(
-            request, "chat/home.html", context={"user_active_chats": user_active_chats}
+            request, "chat/list.html", context={"user_active_chats": user_active_chats}
         )
 
 
-class RoomView(View):
-    def get(self, request, room_name):
-        return render(request, "chat/room.html", context={"room_name": room_name})
+class ConversationView(View):
+    def get(self, request, id):
+        return render(request, "chat/conversation.html", context={"room_name": id})
