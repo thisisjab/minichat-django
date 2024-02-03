@@ -247,11 +247,11 @@ a,
     margin-top: auto !important;
 }
 
-#chat-message-text-input {
+#chat-message-input {
     outline: 0;
     width: 100%;
     margin: 0;
-    padding: 0 0.35rem;
+    padding: 0 0.5rem;
     border: 0;
 }
 
