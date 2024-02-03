@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 {% block navbar %}{% endblock navbar %}
 {% block main %}
-<div class="d-flex flex-column justify-content-center align-items-center h-min-100 dotted-background">
+<div class="d-flex flex-column justify-content-center align-items-center h-min-100">
     <div class="container">
         <div class="row">
-            <div class="col-12 card py-5 px-5 d-flex flex-column">
+            <div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2 d-flex flex-column">
                 <h1>Welcome to minichat!</h1>
-                <p style="text-align: justify;" class="lh-base">Stay connected and chat with friends, family, and
+                <p style="text-align: justify;" class="">Stay connected and chat with friends, family, and
                     like-minded
                     individuals, no matter where they are in the world. With our user-friendly interface and seamless
                     experience, communication has never been easier. Express yourself with emojis, share photos, and
@@ -14,9 +14,14 @@
                     meet new people who share your passions. Whether you're looking to stay in touch with loved ones or
                     expand your social circle, our chatting application is your go-to platform for enjoyable and
                     meaningful conversations. Chat away and make connections that last a lifetime!</p>
-                <div class="col-12 d-flex flex-row gap-3 justify-content-center mt-3">
-                    <a class="button second-primary-button" href="{% url 'login' %}">Login</a>
-                    <a class="button primary-button" href="#">Sign Up Now</a>
+
+                <div class="d-flex justify-content-center">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                          <li class="breadcrumb-item"><a class="" href="{% url 'login' %}">Login</a></li>
+                          <li class="breadcrumb-item"><a class="" href="{% url 'users:signup' %}">Sign Up Now</a></li>
+                        </ol>
+                      </nav>
                 </div>
             </div>
         </div>
