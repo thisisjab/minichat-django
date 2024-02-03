@@ -225,6 +225,7 @@ a,
 
 #chat-box {
     background-color: var(--pale);
+    background-image: url('../svg/chat-background-pattern.svg');
 }
 
 #chat-box>#chat-box-empty {
@@ -237,10 +238,12 @@ a,
 }
 
 #chat-messages-list {
-    background-color: wheat;
+    background-color: transparent;
     height: calc(100vh - var(--chat-nav-height) - var(--chat-input-height));
     overflow-y: auto;
     flex-wrap: nowrap;
+    scrollbar-color: var(--second-primary-hover) rgba(255, 255, 255, 0.5);
+    scrollbar-width: thin;
 }
 
 #chat-messages-list> :first-child {
@@ -257,11 +260,13 @@ a,
 
 #chat-sent-message {
     align-self: flex-start;
-    background-color: var(--second-primary-lighter);
-    padding: 0.5rem;
+    background-color: var(--second-primary);
+    padding: 0.75rem;
     margin: 0.5rem;
-    border-radius: var(--bs-border-radius);
+    border-radius: calc(var(--bs-border-radius) + 1rem);
+    border-bottom-left-radius: 0;
     max-width: 400px;
+    color: white;
 }
 
 #chat-sent-message>#body {
@@ -273,7 +278,7 @@ a,
 
 #chat-sent-message>#date {
     text-align: right;
-    color: #707070;
+    color: var(--gray-lighter);
     font-family: SourceCode, monospace;
     font-size: 0.8rem;
     padding: 0;
@@ -283,9 +288,10 @@ a,
 #chat-received-message {
     align-self: flex-end;
     background-color: white;
-    padding: 0.5rem;
+    padding: 0.75rem;
     margin: 0.5rem;
-    border-radius: var(--bs-border-radius);
+    border-radius: calc(var(--bs-border-radius) + 1rem);
+    border-bottom-right-radius: 0;
     max-width: 400px;
 }
 
