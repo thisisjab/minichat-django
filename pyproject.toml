@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "minichat"
-version = "0.1.0"
+version = "1.0.0"
 description = "A besic chatting app built using django"
 authors = ["thisisjab <heythisisjab@gmail.com>"]
 license = "MIT"
