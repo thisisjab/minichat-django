@@ -1,5 +1,5 @@
 # minichat
 
-This is a minimal chatting app created by django and channels.
+Welcome to minichat - a minimal chatting app created using Django and Channels.
 
-**IMPORTANT:** This was only meant to be a fun project just to get to know django channels. I decided what models I needed in less than five minutes back then. Suddenly, I realized that I am used to improve this project day by day. So, you may encounter some bizzarre python or js code. Don't panic. I am on to improving this project.
+**IMPORTANT**: Please note that this project was initially intended as a fun experiment for me to become familiar with Django Channels. I began coding without any specific planning, but as time went on, I found myself continuously improving and enhancing this project. As a result, you may encounter some unusual Python or JavaScript code, as well as a seemingly pointless database design. However, I assure you that I am actively working on enhancing this project. Your feedback and suggestions are always welcome!
