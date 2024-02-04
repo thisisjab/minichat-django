@@ -2,10 +2,10 @@
 {% block navbar %}{% endblock navbar %}
 {% block title %}Sign up{% endblock title %}
 {% block main %}
-<div class="d-flex flex-column justify-content-center align-items-center h-min-100 dotted-background">
+<div class="d-flex flex-column justify-content-center align-items-center h-min-100">
     <div class="container">
         <div class="row">
-            <div class="col-lg-4 offset-lg-4 card py-5 px-5 d-flex flex-column gap-3">
+            <div class="col-lg-4 offset-lg-4 col-md-8 offset-md-2 py-5 px-5 d-flex flex-column gap-3">
                 {% if user.is_authenticated %}
                 <form id="logout-form" action="{% url 'logout' %}" method="post"
                     class="d-flex flex-column justify-content-center align-items-center">
@@ -15,16 +15,8 @@
                             onclick="document.getElementById('logout-form').submit();">logout</a>?</p>
                 </form>
                 {% else %}
-                <h1>Signup</h1>
+                <h1 style="align-self: center;">Signup</h1>
                 <div class="col-12">
-                    {% for field in form %}
-                    {% if field.errors %}
-                    {% for error in field.errors %}
-                    <p class="text-danger">{{error}}</p>
-                    {% endfor %}
-                    {% endif %}
-                    {% endfor %}
-
                     {% if form.non_field_errors %}
                     <hr>
                     {% for error in form.non_field_errors %}
@@ -34,12 +26,28 @@
                 </div>
                 <form id="signup-form" class="col-12 d-flex flex-column gap-3" method="post">
                     {% csrf_token %}
-                    <input name="username" type="text" placeholder="Username" class="simple-text-input">
-                    <input name="email" type="text" placeholder="Email" class="simple-text-input">
-                    <input name="password1" type="password" placeholder="Password" class="simple-text-input">
-                    <input name="password2" type="password" placeholder="Repeat password" class="simple-text-input">
+
+                    <input required name="username" type="text" placeholder="Username" class="text-input">
+                    {% for error in form.username.errors %}
+                        <p class="text-danger">{{ error }}</p>
+                    {% endfor %}
+
+                    <input required name="email" type="text" placeholder="Email" class="text-input">
+                    {% for error in form.email.errors %}
+                        <p class="text-danger">{{ error }}</p>
+                    {% endfor %}
+
+                    <input required name="password1" type="password" placeholder="Password" class="text-input">
+                    {% for error in form.password1.errors %}
+                        <p class="text-danger">{{ error }}</p>
+                    {% endfor %}
+
+                    <input required name="password2" type="password" placeholder="Repeat password" class="text-input">
+                    {% for error in form.password2.errors %}
+                        <p class="text-danger">{{ error }}</p>
+                    {% endfor %}
                     <div class="col-auto mt-3 d-flex flex-row justify-content-center">
-                        <a href="#" onclick="document.getElementById('signup-form').submit();">Sign up</a>
+                        <a href="#" class="text-uppercase" onclick="document.getElementById('signup-form').submit();">Sign up</a>
                     </div>
                 </form>
                 <hr>
