@@ -1,72 +1,17 @@
-<div class="d-flex flex-column" id="chat-messages-list">
-    {% for message in chat_messages %}
-    {% if message.is_sent %}
-    <div class="d-flex flex-column" id="chat-sent-message">
-        <p id="body">{{ message.body }}</p>
-        <p id="date">{{ message.modified_at }}</p>
+<div id="chat-box-navbar">
+    <span id="chat-title">Jesse Pinkman</span>
+    <span id="chat-status">online</span>
+    <div id="chat-box-navbar-buttons">
+        <a href="#"><i class="bi bi-list"></i></a>
     </div>
-    {% else %}
-    <div class="d-flex flex-column" id="chat-received-message">
-        <p id="body">{{ message.body }}</p>
-        <p id="date">{{ message.modified_at }}</p>
-    </div>
-    {% endif %}
+</div>
+<div id="chat-box">
+    {% for i in '0123456789'|make_list %}
+    {% include 'chat/partial/text-message-bubble.html' %}
     {% endfor %}
 </div>
-<div id="chat-input" class="row">
-    <div class="col-10 d-flex flex-row">
-        <input type="text" placeholder="Message..." class="flex-fill" id="chat-message-input">
-    </div>
-    <div class="col-2 d-flex flex-row justify-content-center align-items-center gap-2">
-        <a id="chat-send-button" href="#">Send</a>/
-        <a href="#">File</a>
-    </div>
+<div id="chat-box-input">
+    <input type="text" name="chat-message-input" id="chat-message-input" placeholder="Message...">
+    <a href="#" id="chat-input-button"><i class="bi bi-paperclip"></i></a>
+    <a href="#" id="chat-input-button"><i class="bi bi-send-fill"></i></a>
 </div>
-{{ chat_id|json_script:"chat-id" }}
-{{ user.username|json_script:"chat-username"}}
-<script>
-    const chatId = JSON.parse(document.getElementById('chat-id').textContent);
-    const chatUsername = JSON.parse(document.getElementById('chat-username').textContent);
-    const chatSocket = new WebSocket(
-        'ws://'
-        + window.location.host
-        + '/ws/chat/'
-        + chatId
-        + '/'
-    );
-
-    chatSocket.onmessage = function(e) {
-            const data = JSON.parse(e.data);
-            messageDivId = "chat-sent-message";
-            if (data.sender !== chatUsername) {
-                messageDivId = "chat-received-message";
-            }
-            messageBubble = `<div class="d-flex flex-column" id="${messageDivId}"><p id="body">${data.body}</p><p id="date">${data.created_at}</p></div>`;
-            messageBubbleDiv = document.createElement('div')
-            messageBubbleDiv.innerHTML = messageBubble;
-            messageBubbleDiv = messageBubbleDiv.firstChild;
-            chatMessagesList.appendChild(messageBubbleDiv);
-            chatMessagesList.scrollTop = chatMessagesList.scrollHeight;
-        };
-
-    chatMessagesList = document.querySelector("#chat-messages-list");
-    chatMessagesList.scrollTop = chatMessagesList.scrollHeight;
-
-    sendButton = document.querySelector("#chat-send-button");
-    chatMessageInput = document.querySelector('#chat-message-input');
-
-    chatMessageInput.focus();
-    chatMessageInput.onkeyup = function (e) {
-        if (e.key === 'Enter') {
-            sendButton.click();
-        }
-    };
-
-    sendButton.onclick = function (e) {
-        const body = chatMessageInput.value;
-        chatSocket.send(JSON.stringify({
-            'body': body
-        }));
-        chatMessageInput.value = '';
-    };
-</script>
