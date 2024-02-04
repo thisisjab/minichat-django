@@ -32,7 +32,10 @@ a,
 .font-monospace {
     font-family: SourceCode, monospace;
     font-family: Inter, system-ui;
+}
 
+a {
+    text-decoration: none;
 }
 
 
