@@ -37,7 +37,49 @@ a,
 
 
 :root {
-    --color-primary : #2dc653;
+    /* Colors */
+    --color-primary: #2dc653;
+    --global-border-color: #dee2e6;
+    --global-border-focus-color: #adb5bd;
+    --global-input-hover-color: #f8f9fa;
+
+    /* Sizes */
+    --global-border-radius: .375rem;
+    --global-box-padding: .5rem .75rem;
+
+    /* Transition */
+    --global-transition-duration: .1s;
+
+    /* Animation */
+    --global-appear-animation-duration: 1s;
+}
+
+.text-input {
+    font-family: SourceCode, monospace;
+    border: 1px solid var(--global-border-color);
+    border-radius: var(--bs-border-radius);
+    padding: .25rem .5rem;
+    background-color: white;
+    outline: none;
+    transition: all ease-in-out var(--global-transition-duration);
+}
+
+.text-input:hover {
+    background-color: var(--global-input-hover-color);
+}
+
+.text-input:focus {
+    border-color: var(--global-border-focus-color);
+    background-color: var(--global-input-hover-color);
+}
+
+.error-alert {
+    background-color: #ffe0e9;
+    font-size: .9rem;
+    font-family: SourceCode, monospace;
+    padding: var(--global-box-padding);
+    border-radius: var(--global-border-radius);
+    animation: appear-animation var(--global-appear-animation-duration);
 }
 
 .button {
@@ -60,4 +102,14 @@ a,
 
 .h-min-100 {
     min-height: 100vh;
+}
+
+@keyframes appear-animation {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }

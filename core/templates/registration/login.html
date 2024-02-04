@@ -2,10 +2,10 @@
 {% block navbar %}{% endblock navbar %}
 {% block title %}Login{% endblock title %}
 {% block main %}
-<div class="d-flex flex-column justify-content-center align-items-center h-min-100 dotted-background">
+<div class="d-flex flex-column justify-content-center align-items-center h-min-100">
     <div class="container">
         <div class="row">
-            <div class="col-lg-4 offset-lg-4 card py-5 px-5 d-flex flex-column gap-3">
+            <div class="col-lg-4 offset-lg-4 col-md-8 offset-md-2 py-5 px-5 d-flex flex-column gap-3">
                 {% if user.is_authenticated %}
                 <form id="logout-form" action="{% url 'logout' %}" method="post"
                     class="d-flex flex-column justify-content-center align-items-center">
@@ -15,13 +15,20 @@
                             onclick="document.getElementById('logout-form').submit();">logout</a>?</p>
                 </form>
                 {% else %}
-                <h1>Login</h1>
+                <h1 class="mb-4" style="align-self: center;">Login</h1>
+                {% if form.non_field_errors %}
+                {% for error in form.non_field_errors %}
+                <span class="error-alert mb-3">{{ error }}</span>
+                {% endfor %}
+                {% endif %}
                 <form id="login-form" class="col-12 d-flex flex-column gap-3" method="post">
                     {% csrf_token %}
-                    <input name="username" type="text" placeholder="Username/Email" class="simple-text-input">
-                    <input name="password" type="password" placeholder="Password" class="simple-text-input">
+                    <input id="username-input" name="username" type="text" placeholder="Username/Email"
+                        class="text-input">
+                    <input id="password-input" name="password" type="password" placeholder="Password"
+                        class="text-input">
                     <div class="col-auto mt-3 d-flex flex-row justify-content-center">
-                        <a href="#" onclick="document.getElementById('login-form').submit();">Log me in</a>
+                        <a href="#" id="login-button">Log me in</a>
                     </div>
                 </form>
                 <hr>
@@ -38,4 +45,26 @@
         </div>
     </div>
 </div>
+
+{% block custom_scripts %}
+<script>
+    loginForm = document.getElementById('login-form');
+    usernameInput = document.getElementById('username-input');
+    passwordInput = document.getElementById('password-input');
+    usernameInput.onkeyup = inputsOnEnter;
+    passwordInput.onkeyup = inputsOnEnter;
+
+    function inputsOnEnter(e) {
+        if (e.key === 'Enter') {
+            loginButton.click();
+        }
+    }
+
+    loginButton = document.getElementById('login-button');
+    loginButton.onclick = function () {
+        loginForm.submit();
+    }
+
+</script>
+{% endblock custom_scripts %}
 {% endblock main %}
