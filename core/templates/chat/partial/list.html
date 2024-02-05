@@ -1,5 +1,5 @@
 <div id="chat-list-container" class="col-12 d-flex flex-column">
-    {% for i in '0123456789'|make_list %}
-    {% include 'chat/partial/list-item.html' %}
+    {% for last_message in last_messages %}
+    {% include 'chat/partial/list-item.html' with last_message=last_message %}
     {% endfor %}
 </div>

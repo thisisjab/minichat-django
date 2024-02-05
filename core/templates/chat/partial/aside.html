@@ -12,6 +12,6 @@
 </div>
 <div class="row d-flex flex-column flex-fill">
     <div class="d-flex flex-column flex-fill">
-        {% include 'chat/partial/list.html' %}
+        {% include 'chat/partial/list.html' with last_messages=last_messages %}
     </div>
 </div>

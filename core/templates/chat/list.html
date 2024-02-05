@@ -5,7 +5,7 @@
 <div class="container d-flex flex-column h-100-vh">
     <div id="chat-panel" class="row d-flex flex-fill">
         <div class="col-lg-4 d-flex flex-column">
-            {% include 'chat/partial/aside.html' %}
+            {% include 'chat/partial/aside.html' with last_messages=last_messages%}
         </div>
         <div id="chat-box-container" class="col-lg-8">
             {% include 'chat/partial/chat-box.html' %}
