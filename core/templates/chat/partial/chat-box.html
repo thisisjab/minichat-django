@@ -1,6 +1,6 @@
 {% block chat_box %}
 <div id="chat-box-navbar">
-    <span id="chat-title">Jesse Pinkman</span>
+    <span id="chat-title">{{ peer_user.first_name }} {{ peer_user.last_name }}</span>
     <span id="chat-status">online</span>
     <div id="chat-box-navbar-buttons">
         <a href="#"><i class="bi bi-list"></i></a>

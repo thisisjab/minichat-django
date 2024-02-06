@@ -6,8 +6,10 @@ from django.shortcuts import get_object_or_404
 from django.views.generic import TemplateView
 
 from core.chat import models
-from core.chat.utils import (check_if_chat_exists_for_participants,
-                             get_last_messages_for_user)
+from core.chat.utils import (
+    check_if_chat_exists_for_participants,
+    get_last_messages_for_user,
+)
 
 User = get_user_model()
 
@@ -49,6 +51,8 @@ class ConversationView(LoginRequiredMixin, TemplateView):
             .messages.order_by("modified_at")
             .all()
         )
+
+        context["peer_user"] = peer_user
         context["last_messages"] = last_messages
         context["chat_messages"] = chat_messages
 
