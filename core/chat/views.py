@@ -34,26 +34,27 @@ class ConversationView(LoginRequiredMixin, TemplateView):
     def get_context_data(self: Self, **kwargs: Any) -> dict[str, Any]:
         user = self.request.user
         peer_user = get_object_or_404(User, username=kwargs.get("username", None))
+        last_messages = get_last_messages_for_user(user)
+
         context = super().get_context_data(**kwargs)
+        context["peer_user"] = peer_user
+        context["last_messages"] = last_messages
 
         if not check_if_chat_exists_for_participants([user, peer_user]):
             private_chat = models.PrivateChat.objects.create()
             private_chat.participants.add(user)
             private_chat.participants.add(peer_user)
+            context["chat_id"] = private_chat.id
             context["chat_messages"] = list()
             return context
 
-        last_messages = get_last_messages_for_user(user)
-        chat_messages = (
+        chat = (
             models.PrivateChat.objects.filter(participants=user)
             .filter(participants=peer_user)
             .first()
-            .messages.order_by("modified_at")
-            .all()
         )
 
-        context["peer_user"] = peer_user
-        context["last_messages"] = last_messages
-        context["chat_messages"] = chat_messages
+        context["chat_id"] = chat.id
+        context["chat_messages"] = chat.messages.order_by("modified_at").all()
 
         return context
