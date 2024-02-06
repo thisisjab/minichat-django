@@ -20,7 +20,7 @@ def get_last_messages_for_user(user: User):
                     "body": last_message.body,
                     "modified_at": last_message.modified_at,
                     "user": last_message.related_chat.participants.exclude(
-                        pk=last_message.sender.pk
+                        pk=user.pk
                     ).first(),
                 }
             )
