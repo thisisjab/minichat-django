@@ -1,3 +1,4 @@
+{% block chat_box %}
 <div id="chat-box-navbar">
     <span id="chat-title">Jesse Pinkman</span>
     <span id="chat-status">online</span>
@@ -6,8 +7,8 @@
     </div>
 </div>
 <div id="chat-box">
-    {% for i in '0123456789'|make_list %}
-    {% include 'chat/partial/text-message-bubble.html' %}
+    {% for chat_message in chat_messages %}
+    {% include 'chat/partial/text-message-bubble.html' with message=chat_message %}
     {% endfor %}
 </div>
 <div id="chat-box-input">
@@ -15,3 +16,15 @@
     <a href="#" id="chat-input-button"><i class="bi bi-paperclip"></i></a>
     <a href="#" id="chat-input-button"><i class="bi bi-send-fill"></i></a>
 </div>
+{% endblock chat_box %}
+{% block custom_scripts %}
+<script>
+    var chatBox = document.getElementById("chat-box");
+    // Move scrollbar to bottom
+    function moveChatBoxToBottom() {
+        chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    moveChatBoxToBottom();
+</script>
+{% endblock custom_scripts %}

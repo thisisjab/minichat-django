@@ -19,14 +19,3 @@
 </div>
 </div>
 {% endblock main %}
-{% block custom_scripts %}
-<script>
-    var chatBox = document.getElementById("chat-box");
-    // Move scrollbar to buttom
-    function moveChatBoxToButtom() {
-        chatBox.scrollTop = chatBox.scrollHeight;
-    }
-
-    moveChatBoxToButtom();
-</script>
-{% endblock custom_scripts %}

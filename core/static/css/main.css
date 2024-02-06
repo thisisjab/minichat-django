@@ -360,8 +360,8 @@ p {
     transition: all ease-in-out var(--global-transition-duration);
 }
 
-#chat-box:first-child {
-    margin-top: auto;
+#chat-box > #chat-text-message:first-child {
+    margin-top: auto !important;
 }
 
 #chat-box>#chat-text-message {
@@ -381,12 +381,12 @@ p {
 
 #chat-box>#chat-text-message.sent {
     align-self: flex-end;
-
     background-color: var(--color-primary-very-light);
     border-bottom-right-radius: 0;
 }
 
 #chat-box>#chat-text-message.received {
+    align-self: flex-start;
     background-color: #F8F9FA;
     border-bottom-left-radius: 0;
 
