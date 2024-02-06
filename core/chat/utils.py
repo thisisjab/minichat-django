@@ -1,4 +1,5 @@
 from typing import List
+from uuid import UUID
 
 from django.contrib.auth import get_user_model
 
@@ -47,3 +48,17 @@ def check_if_chat_exists_for_participants(participants: List[User]) -> bool:
         return True
 
     return False
+
+
+def check_user_is_a_participant_of_chat(user: UUID, chat_id: UUID) -> bool:
+    """Check if given users is a participant of given chat (if exists).
+
+    Args:
+        user (User): User to check participation
+        chat_id (UUID): Chat to check participation
+
+    Returns:
+        bool: True if chat exists and user is a participant of
+    """
+
+    return models.PrivateChat.objects.filter(pk=chat_id, participants=user).exists()
