@@ -269,6 +269,24 @@ p {
     justify-content: space-between;
 }
 
+#chat-box-container-empty {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+    background: linear-gradient(180deg,var(--color-gray-very-light), transparent);
+}
+
+#chat-box-container-empty>p {
+    font-family: SourceCode, monospace;
+    background-color: white;
+    color: var(--color-gray-dark);
+    padding: calc(var(--global-box-padding-y) / 2) var(--global-box-padding-x);
+    border-radius: var(--global-border-radius);
+
+}
+
 #chat-box-navbar {
     background-color: white;
     padding: var(--global-box-padding-y) 0;
