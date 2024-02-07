@@ -37,9 +37,12 @@
         const isMessageReceived = data.sender === peerUser ? true : false;
         var messageModifiedAt = new Date(data.modified_at);
         messageModifiedAt = messageModifiedAt.toLocaleTimeString('en-US', {
+            year: 'numeric',
+            month: 'short',
+            day: 'numeric',
             hour: 'numeric',
-            minute: '2-digit',
-            hour12: false
+            minute: 'numeric',
+            hour12: true
         });
         var messageBubble = document.createElement('div');
         messageBubble.innerHTML = `<div id="chat-text-message" class="${isMessageReceived ? 'received' : 'sent'}">
