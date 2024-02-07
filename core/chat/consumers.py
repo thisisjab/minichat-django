@@ -4,30 +4,46 @@ from typing import Self
 from asgiref.sync import async_to_sync
 from channels.generic.websocket import WebsocketConsumer
 
-from core.chat import models
+from core.chat import models, utils
 
 
 class ChatConsumer(WebsocketConsumer):
     def connect(self: Self):
-        ...
+        user = self.scope["user"]
+        chat_id = self.scope["path"].split("/")[3]
+
+        if not user.is_authenticated:
+            self.disconnect()
+
+        if not utils.check_user_is_a_participant_of_chat(user, chat_id):
+            self.disconnect()
+
+        self.chat_id = chat_id
+
+        async_to_sync(self.channel_layer.group_add)(
+            self.chat_id,
+            self.channel_name,
+        )
+
+        self.accept()
 
     def receive(self, text_data):
         text_data_json = json.loads(text_data)
         body = text_data_json["body"]
         sender = self.scope["user"]
 
-        message = models.TextMessage.objects.create(
+        message = models.PrivateTextMessage.objects.create(
             sender=sender,
-            chat_id=self.chat_id,
+            related_chat_id=self.chat_id,
             body=body,
         )
 
         async_to_sync(self.channel_layer.group_send)(
-            self.room_group_name,
+            self.chat_id,
             {
                 "type": "chat_message",
                 "body": message.body,
-                "creation_at": str(message.created_at),
+                "modified_at": str(message.modified_at.isoformat()),
                 "sender": sender.username,
             },
         )
@@ -35,7 +51,7 @@ class ChatConsumer(WebsocketConsumer):
     def chat_message(self, event):
         body = event["body"]
         sender = event["sender"]
-        creation_at = event["creation_at"]
+        modified_at = event["modified_at"]
 
         self.send(
             text_data=json.dumps(
@@ -43,7 +59,7 @@ class ChatConsumer(WebsocketConsumer):
                     "type": "text_message",
                     "body": f"{body}",
                     "sender": f"{sender}",
-                    "created_at": f"{creation_at}",
+                    "modified_at": f"{modified_at}",
                 }
             )
         )
