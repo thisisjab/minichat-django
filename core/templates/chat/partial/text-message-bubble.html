@@ -1,11 +1,11 @@
 {% if message.sender == user %}
 <div id="chat-text-message" class="sent">
     <p class="body">{{ message.body }}</p>
-    <span class="date">12:36</span>
+    <span class="date">{{ message.modified_at }}</span>
 </div>
 {% else %}
 <div id="chat-text-message" class="received">
     <p class="body">{{ message.body }}</p>
-    <span class="date">12:36</span>
+    <span class="date">{{ message.modified_at }}</span>
 </div>
 {% endif %}
