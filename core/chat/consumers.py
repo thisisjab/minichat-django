@@ -1,44 +1,50 @@
 import json
 from typing import Self
 
-from asgiref.sync import async_to_sync
-from channels.generic.websocket import WebsocketConsumer
+from asgiref.sync import sync_to_async
+from channels.generic.websocket import AsyncWebsocketConsumer
 
 from core.chat import models, utils
 
 
-class ChatConsumer(WebsocketConsumer):
-    def connect(self: Self):
+class ChatConsumer(AsyncWebsocketConsumer):
+    async def connect(self: Self):
         user = self.scope["user"]
         chat_id = self.scope["path"].split("/")[3]
 
         if not user.is_authenticated:
-            self.disconnect()
+            await self.disconnect()
 
-        if not utils.check_user_is_a_participant_of_chat(user, chat_id):
-            self.disconnect()
+        user_is_participant = await sync_to_async(
+            utils.check_user_is_a_participant_of_chat
+        )(user, chat_id)
+        if not user_is_participant:
+            await self.disconnect()
 
         self.chat_id = chat_id
 
-        async_to_sync(self.channel_layer.group_add)(
+        await self.channel_layer.group_add(
             self.chat_id,
             self.channel_name,
         )
 
-        self.accept()
+        await self.accept()
 
-    def receive(self, text_data):
+    async def disconnect(self, close_code):
+        await self.channel_layer.group_discard(self.chat_id, self.channel_name)
+
+    async def receive(self, text_data):
         text_data_json = json.loads(text_data)
         body = text_data_json["body"]
         sender = self.scope["user"]
 
-        message = models.PrivateTextMessage.objects.create(
+        message = await sync_to_async(models.PrivateTextMessage.objects.create)(
             sender=sender,
             related_chat_id=self.chat_id,
             body=body,
         )
 
-        async_to_sync(self.channel_layer.group_send)(
+        await self.channel_layer.group_send(
             self.chat_id,
             {
                 "type": "chat_message",
@@ -48,12 +54,12 @@ class ChatConsumer(WebsocketConsumer):
             },
         )
 
-    def chat_message(self, event):
+    async def chat_message(self, event):
         body = event["body"]
         sender = event["sender"]
         modified_at = event["modified_at"]
 
-        self.send(
+        await self.send(
             text_data=json.dumps(
                 {
                     "type": "text_message",
