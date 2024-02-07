@@ -17,14 +17,70 @@
     <a href="#" id="chat-input-button"><i class="bi bi-send-fill"></i></a>
 </div>
 {% endblock chat_box %}
+{{ chat_id|json_script:"chat-id" }}
+{{ peer_user.username|json_script:"peer-user" }}
 {% block custom_scripts %}
 <script>
+    const chatId = JSON.parse(document.getElementById('chat-id').textContent);
+    const peerUser = JSON.parse(document.getElementById('peer-user').textContent);
+    const ws = new WebSocket(
+        'ws://'
+        + window.location.host
+        + '/ws/chat/'
+        + chatId
+        + '/'
+    );
+
+    ws.onmessage = function (e) {
+        const data = JSON.parse(e.data);
+        const messageBody = data.body;
+        const isMessageReceived = data.sender === peerUser ? true : false;
+        var messageModifiedAt = new Date(data.modified_at);
+        messageModifiedAt = messageModifiedAt.toLocaleTimeString('en-US', {
+            hour: 'numeric',
+            minute: '2-digit',
+            hour12: false
+        });
+        var messageBubble = document.createElement('div');
+        messageBubble.innerHTML = `<div id="chat-text-message" class="${isMessageReceived ? 'received' : 'sent'}">
+        <p class="body">${messageBody}</p>
+        <span class="date">${messageModifiedAt}</span>
+        </div>`
+        messageBubble = messageBubble.firstChild;
+        chatBox.appendChild(messageBubble);
+        moveChatBoxToBottom();
+    }
+
+    ws.onclose = function (e) {
+        var shouldRefresh = confirm("You are disconnected. Do you want to try again and connect?");
+
+        if (shouldRefresh) {
+            location.reload();
+        }
+    }
+
     var chatBox = document.getElementById("chat-box");
-    // Move scrollbar to bottom
     function moveChatBoxToBottom() {
         chatBox.scrollTop = chatBox.scrollHeight;
     }
 
     moveChatBoxToBottom();
+
+    var textMessageInput = document.getElementById("chat-message-input");
+    textMessageInput.onkeyup = function (e) {
+        if (e.key === 'Enter') {
+            sendMessageButton.click();
+        }
+    }
+
+    var sendMessageButton = document.querySelector('#chat-input-button>i.bi-send-fill');
+    sendMessageButton.onclick = function (e) {
+        message = textMessageInput.value;
+        ws.send(JSON.stringify({ body: message }));
+        textMessageInput.value = "";
+    }
+
+
+
 </script>
 {% endblock custom_scripts %}
