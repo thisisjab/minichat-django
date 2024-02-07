@@ -51,10 +51,13 @@ class ConversationView(LoginRequiredMixin, TemplateView):
         chat = (
             models.PrivateChat.objects.filter(participants=user)
             .filter(participants=peer_user)
+            .prefetch_related("messages")
             .first()
         )
 
         context["chat_id"] = chat.id
-        context["chat_messages"] = chat.messages.order_by("modified_at").all()
+        context["chat_messages"] = (
+            chat.messages.order_by("modified_at").select_related("sender").all()
+        )
 
         return context
