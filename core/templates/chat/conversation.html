@@ -1,4 +1,7 @@
 {% extends 'chat/list.html' %}
+{% block chat_panel %}
+{% include 'chat/partial/aside.html' with last_messages=last_messages%}
+{% endblock chat_panel %}
 {% block chat_box %}
 {% include 'chat/partial/chat-box.html' with chat_messages=chat_messages %}
 {% endblock chat_box %}

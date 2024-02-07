@@ -5,7 +5,9 @@
 <div class="container d-flex flex-column h-100-vh">
     <div id="chat-panel" class="row d-flex flex-fill">
         <div class="col-lg-4 d-flex flex-column">
+            {% block chat_panel %}
             {% include 'chat/partial/aside.html' with last_messages=last_messages%}
+            {% endblock chat_panel %}
         </div>
         <div id="chat-box-container" class="col-lg-8">
             {% block chat_box %}
