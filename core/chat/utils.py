@@ -75,3 +75,13 @@ def get_or_create_private_chat(participants: List[User]):
         private_chat.participants.add(participants[0])
         private_chat.participants.add(participants[1])
         return private_chat
+
+
+def create_user_channel_key(username: str):
+    """Create a private group name for given username.
+
+    Args:
+        username (str): user's username to create group name
+    """
+
+    return f"user-{username}"
