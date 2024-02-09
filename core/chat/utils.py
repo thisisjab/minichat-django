@@ -62,3 +62,16 @@ def check_user_is_a_participant_of_chat(user: UUID, chat_id: UUID) -> bool:
     """
 
     return models.PrivateChat.objects.filter(pk=chat_id, participants=user).exists()
+
+
+def get_or_create_private_chat(participants: List[User]):
+    """Create a private chat for given users."""
+
+    if check_if_chat_exists_for_participants(participants):
+        return models.PrivateChat.objects.filter(participants__in=participants).first()
+    else:
+        private_chat = models.PrivateChat()
+        private_chat.save()
+        private_chat.participants.add(participants[0])
+        private_chat.participants.add(participants[1])
+        return private_chat
