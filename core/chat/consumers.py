@@ -1,6 +1,6 @@
-import json
 from typing import Self
 
+import ujson
 from asgiref.sync import sync_to_async
 from channels.generic.websocket import AsyncWebsocketConsumer
 
@@ -34,7 +34,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
         await self.channel_layer.group_discard(self.chat_id, self.channel_name)
 
     async def receive(self, text_data):
-        text_data_json = json.loads(text_data)
+        text_data_json = ujson.loads(text_data)
         body = text_data_json["body"]
         sender = self.scope["user"]
 
@@ -60,7 +60,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
         modified_at = event["modified_at"]
 
         await self.send(
-            text_data=json.dumps(
+            text_data=ujson.dumps(
                 {
                     "type": "text_message",
                     "body": f"{body}",
