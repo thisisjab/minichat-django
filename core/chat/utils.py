@@ -68,7 +68,11 @@ def get_or_create_private_chat(participants: List[User]):
     """Create a private chat for given users."""
 
     if check_if_chat_exists_for_participants(participants):
-        return models.PrivateChat.objects.filter(participants__in=participants).first()
+        return (
+            models.PrivateChat.objects.filter(participants=participants[0])
+            .filter(participants=participants[1])
+            .first()
+        )
     else:
         private_chat = models.PrivateChat()
         private_chat.save()
