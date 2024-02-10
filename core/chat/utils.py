@@ -8,7 +8,7 @@ from core.chat import models
 User = get_user_model()
 
 
-def get_last_messages_for_user(user: User):
+def get_last_messages_for_user(user: User):  # type: ignore
     """Get last message of all conversations that a user is involved."""
     last_messages = []
 
@@ -28,7 +28,7 @@ def get_last_messages_for_user(user: User):
     return last_messages
 
 
-def check_if_chat_exists_for_participants(participants: List[User]) -> bool:
+def check_if_chat_exists_for_participants(participants: List[User]) -> bool:  # type: ignore
     """Checks if a chat with given participants exists.
 
     Args:
@@ -64,7 +64,7 @@ def check_user_is_a_participant_of_chat(user: UUID, chat_id: UUID) -> bool:
     return models.PrivateChat.objects.filter(pk=chat_id, participants=user).exists()
 
 
-def get_or_create_private_chat(participants: List[User]):
+def get_or_create_private_chat(participants: List[User]):  # type: ignore
     """Create a private chat for given users."""
 
     if check_if_chat_exists_for_participants(participants):
@@ -91,7 +91,7 @@ def create_user_channel_key(username: str):
     return f"user-{username}"
 
 
-def get_users_all_private_chats(user: User):
+def get_users_all_private_chats(user: User):  # type: ignore
     """Get all private chats that user has participated in.
 
     Args:
