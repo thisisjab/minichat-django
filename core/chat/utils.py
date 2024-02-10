@@ -89,3 +89,13 @@ def create_user_channel_key(username: str):
     """
 
     return f"user-{username}"
+
+
+def get_users_all_private_chats(user: User):
+    """Get all private chats that user has participated in.
+
+    Args:
+        user (User): User's instance
+    """
+
+    return models.PrivateChat.objects.filter(participants=user).all()
